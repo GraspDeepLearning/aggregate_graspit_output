@@ -14,7 +14,6 @@ def get_model_grasps(graspfilepath, model_name, graspClass=None):
 
     grasps = []
 
-
     if not os.path.exists(graspfilepath):
         print graspfilepath + " does not exist, skipping this object"
         return None
@@ -81,7 +80,6 @@ def graspfilepath_to_grasps(graspfilepath, graspClass, model_name):
                                          energy=energy,
                                          model_name=model_name))
 
-
                 reading_vcs = False
                 virtual_contacts = []
 
@@ -91,8 +89,5 @@ def graspfilepath_to_grasps(graspfilepath, graspClass, model_name):
                 z = float(vc_array[2])/1000.0
 
                 virtual_contacts.append((x, y, z))
-
-
-
 
     return grasps
