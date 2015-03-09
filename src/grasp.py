@@ -4,7 +4,7 @@ import os
 from collections import namedtuple
 from geometry_msgs.msg import Pose
 
-Grasp = namedtuple('Grasp', 'energy joint_angles dof_values pose virtual_contacts')
+Grasp = namedtuple('Grasp', 'energy joint_angles dof_values pose virtual_contacts grasp_type')
 
 
 def get_model_grasps(graspfilepath, model_name, graspClass=None):
@@ -78,7 +78,8 @@ def graspfilepath_to_grasps(graspfilepath, graspClass, model_name):
                                          palm_pose=[pose.position.x, pose.position.y, pose.position.z, pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w],
                                          virtual_contacts=virtual_contacts,
                                          energy=energy,
-                                         model_name=model_name))
+                                         model_name=model_name,
+                                         grasp_type=-1))
 
                 reading_vcs = False
                 virtual_contacts = []

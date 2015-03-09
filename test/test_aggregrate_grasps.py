@@ -32,7 +32,7 @@ class TestAggregateGrasps(unittest.TestCase):
 
     def test_output_dim(self):
         self.grasp_aggregator.run()
-        self.assertEqual(self.grasp_aggregator.grasp_dataset.get_current_index(), 3629)
+        self.assertEqual(self.grasp_aggregator.grasp_dataset.get_current_index(), 1662)
 
     def tearDown(self):
         if os.path.exists(self.output_file):
