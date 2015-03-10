@@ -27,18 +27,16 @@ class TestAggregateGrasps(unittest.TestCase):
         grasp_dataset = GraspDataset(self.output_file ,
                                      DATASET_TEMPLATE_PATH + "/dataset_configs/graspit_grasps_dataset.yaml")
 
-        energy_threshold = -0.25
+        energy_threshold = -0.35
         self.grasp_aggregator = GraspAggregator(graspit_grasps_dir, TEST_AGG_GRASPIT_DIR, grasp_dataset, energy_threshold)
 
     def test_output_dim(self):
         self.grasp_aggregator.run()
-        self.assertEqual(self.grasp_aggregator.grasp_dataset.get_current_index(), 1662)
+        self.assertEqual(self.grasp_aggregator.grasp_dataset.get_current_index(), 15)
 
-    def tearDown(self):
-        if os.path.exists(self.output_file):
-            os.remove(self.output_file)
-
-
+    #def tearDown(self):
+        #if os.path.exists(self.output_file):
+        #    os.remove(self.output_file)
 
 if __name__ == '__main__':
     unittest.main()

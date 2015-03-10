@@ -6,6 +6,7 @@ from geometry_msgs.msg import Pose
 
 Grasp = namedtuple('Grasp', 'energy joint_angles dof_values pose virtual_contacts grasp_type')
 
+VC_INDICES = [0, 7, 11, 15]
 
 def get_model_grasps(graspfilepath, model_name, graspClass=None):
 
@@ -73,10 +74,16 @@ def graspfilepath_to_grasps(graspfilepath, graspClass, model_name):
 
             #check if we are finished
             if len(vc_array) != 3:
+
+                tracked_vcs = []
+
+                for index in VC_INDICES:
+                    tracked_vcs.append(virtual_contacts[index])
+
                 grasps.append(graspClass(joint_values=joint_angles,
                                          dof_values=dof_values,
                                          palm_pose=[pose.position.x, pose.position.y, pose.position.z, pose.orientation.x, pose.orientation.y, pose.orientation.z, pose.orientation.w],
-                                         virtual_contacts=virtual_contacts,
+                                         virtual_contacts=tracked_vcs,
                                          energy=energy,
                                          model_name=model_name,
                                          grasp_type=-1))
